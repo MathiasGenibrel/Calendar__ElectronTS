@@ -9,7 +9,6 @@
       "@renderer/": ["./src/renderer"]
     },
     "allowJs": true,
-    "jsx": "preserve",
     "sourceMap": true,
     "outDir": "./dist",
     "strict": true

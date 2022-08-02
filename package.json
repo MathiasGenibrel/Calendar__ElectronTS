@@ -5,8 +5,7 @@
   "main": "./dist/main.js",
   "scripts": {
     "start:ts": "tsc -w",
-    "start": "tsc && electron .",
-    "dev": "concurrently \"tsc -w\" \"electron .\""
+    "start": "tsc && electron ."
   },
   "author": "Mathias Genibrel",
   "license": "ISC",
