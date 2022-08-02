@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "lib": ["dom", "es2015", "es2016", "es2017"],
+    "baseUrl": ".",
+    "paths": {
+      "@main/": ["./src/main"],
+      "@renderer/": ["./src/renderer"]
+    },
+    "allowJs": true,
+    "jsx": "preserve",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "strict": true
+  },
+  "include": ["./src", "./test", "./mocks"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
+}

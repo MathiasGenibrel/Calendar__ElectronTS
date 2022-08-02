@@ -1,0 +1,19 @@
+{
+  "name": "calendar",
+  "version": "1.0.0",
+  "description": "calendar app",
+  "main": "./dist/main.js",
+  "scripts": {
+    "start:ts": "tsc -w",
+    "start": "tsc && electron .",
+    "dev": "concurrently \"tsc -w\" \"electron .\""
+  },
+  "author": "Mathias Genibrel",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^20.0.0"
+  },
+  "devDependencies": {
+    "concurrently": "^7.3.0"
+  }
+}
