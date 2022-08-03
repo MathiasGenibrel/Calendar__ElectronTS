@@ -1,7 +1,7 @@
 import Config from "../environments/local.config";
 import { Title } from "./Title";
 
-const CURRENT_MONTH = new Date(Date.now()).getMonth();
+const INITIAL_DATE = new Date(Date.now());
 
 class Calendar {
   private currentDate: Date = new Date(Date.now());
@@ -14,6 +14,7 @@ class Calendar {
     ).getDate();
   }
 
+  // TODO - Refactor this method - Create new factory method (ElementHTML extends to DayElement)
   private createDayElement(day: number): HTMLElement {
     const today = this.currentDate.getDay();
     const currentMonthString = this.currentDate.toLocaleDateString(
@@ -29,7 +30,10 @@ class Calendar {
     // TODO add event element
 
     // Add class to make difference between current day and other days
-    if (day === today && this.currentDate.getMonth() === CURRENT_MONTH)
+    if (
+      day === today &&
+      this.currentDate.getMonth() === INITIAL_DATE.getMonth()
+    )
       dayElementContainer.classList.add("calendar__app__dayMonth__day--today");
 
     dayTitle.textContent =
@@ -42,6 +46,12 @@ class Calendar {
 
   public nextMonth(): void {
     this.currentDate.setMonth(this.currentDate.getMonth() + 1);
+
+    this.render();
+  }
+
+  public initialMonth(): void {
+    this.currentDate = new Date(Date.now());
 
     this.render();
   }
