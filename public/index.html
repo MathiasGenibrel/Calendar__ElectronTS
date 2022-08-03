@@ -15,19 +15,17 @@
     <link rel="stylesheet" href="./styles/reset.css" />
   </head>
   <body>
-    <main>
-      <section class="calendar__app">
-        <article class="calendar__app__title">
-          <h1 id="currentMonth">{Month Year}</h1>
-          <div>
-            <button id="previous">Previous</button>
-            <button id="today">Today</button>
-            <button id="next">Next</button>
-          </div>
+    <main class="calendar__app">
+      <section class="calendar__app__title">
+        <h1 id="currentMonth">{Month Year}</h1>
+        <article>
+          <button id="previousMonth">Previous</button>
+          <button id="today">Today</button>
+          <button id="nextMonth">Next</button>
         </article>
-        <article class="calendar__app__weekday" id="weekday"></article>
-        <article class="calendar__app__dayMonth" id="dayMonth"></article>
       </section>
+      <section class="calendar__app__weekday" id="weekday"></section>
+      <section class="calendar__app__dayMonth" id="dayMonth"></section>
     </main>
     <script>
       require("../dist/rendered/rendered.js");

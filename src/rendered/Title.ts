@@ -1,5 +1,7 @@
 import Config from "../environments/local.config";
 
+let WEEKDAY_GENERATED: boolean = false;
+
 export class Title {
   private readonly currentDate: Date;
   private readonly title: string;
@@ -50,22 +52,25 @@ export class Title {
    * Title component includes, the current month, year and the weekdays.
    */
   public render(): void {
-    console.log(Config);
-
     const currentMonthElement = document.querySelector(
       "#currentMonth"
     ) as HTMLHeadingElement;
     currentMonthElement.textContent = this.title;
 
-    const currentWeekdayElement = document.querySelector(
-      "#weekday"
-    ) as HTMLElement;
+    if (!WEEKDAY_GENERATED) {
+      console.log(Config);
+      const currentWeekdayElement = document.querySelector(
+        "#weekday"
+      ) as HTMLElement;
 
-    this.weekdays.forEach((day) => {
-      const p = document.createElement("p");
-      p.textContent = day;
+      this.weekdays.forEach((day) => {
+        const p = document.createElement("p");
+        p.textContent = day;
 
-      currentWeekdayElement.appendChild(p);
-    });
+        currentWeekdayElement.appendChild(p);
+      });
+
+      WEEKDAY_GENERATED = true;
+    }
   }
 }
