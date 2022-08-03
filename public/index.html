@@ -12,13 +12,12 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles/styles.css" />
-    <script src="../dist/rendered/rendered.js" defer></script>
   </head>
   <body>
     <main>
       <section class="calendar__app">
         <article class="calendar__app__title">
-          <h1 id="currentMonth">Août 2022</h1>
+          <h1 id="currentMonth">{Month Year}</h1>
           <button id="previous">Précédent</button>
           <button id="today">Aujourd'hui</button>
           <button id="next">Suivant</button>
@@ -37,5 +36,8 @@
         </table>
       </section>
     </main>
+    <script>
+      require("../dist/rendered/rendered.js");
+    </script>
   </body>
 </html>

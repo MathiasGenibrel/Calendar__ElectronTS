@@ -4,8 +4,9 @@
   "description": "calendar app",
   "main": "./dist/main.js",
   "scripts": {
-    "start:ts": "tsc -w",
-    "start": "tsc && electron ."
+    "start:electron": "NODE_ENV='development' electron .",
+    "start:ts": "NODE_ENV='development' tsc -w",
+    "start": "NODE_ENV='development' tsc && electron ."
   },
   "author": "Mathias Genibrel",
   "license": "ISC",
