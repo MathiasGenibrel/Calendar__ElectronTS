@@ -4,16 +4,14 @@ import RFC_LANGUAGE from "./RFC_Languages";
 import { ISystem } from "../interface/IConfig";
 
 class System {
-  private readonly production: boolean;
   public readonly language: string;
 
   constructor(production: boolean) {
-    this.language = this.getLanguage();
-    this.production = production;
+    this.language = this.getLanguage(production);
   }
 
-  private getLanguage(): string {
-    if (!this.production)
+  private getLanguage(production: boolean): string {
+    if (!production)
       return RFC_LANGUAGE[Math.floor(Math.random() * RFC_LANGUAGE.length)];
 
     return window.navigator.language ?? "en-US";
