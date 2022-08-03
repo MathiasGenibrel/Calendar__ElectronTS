@@ -1,3 +1,38 @@
-* {
-  font-family: "Comfortaa", cursive;
+.calendar__app__title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1rem;
+  text-transform: capitalize;
+}
+
+.calendar__app__title > h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.calendar__app__title button {
+  background-color: transparent;
+  padding: 0.25rem 1rem;
+  border: solid #eee 1px;
+  border-radius: 0.5rem;
+  box-shadow: 0.3px 0.3px 1px 0.3px #ccc;
+  cursor: pointer;
+}
+
+.calendar__app__title button:active {
+  background-color: #eee;
+}
+
+.calendar__app__weekday,
+.calendar__app__dayMonth {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  justify-items: end;
+  text-transform: capitalize;
+  padding: 1rem 0;
+}
+
+.calendar__app__weekday > p {
+  padding: 0 0.5rem;
 }

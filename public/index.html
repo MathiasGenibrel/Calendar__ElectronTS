@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TypeScript Electron App</title>
+    <title>TypeScript Calendar App</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,28 +12,21 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles/styles.css" />
+    <link rel="stylesheet" href="./styles/reset.css" />
   </head>
   <body>
     <main>
       <section class="calendar__app">
         <article class="calendar__app__title">
           <h1 id="currentMonth">{Month Year}</h1>
-          <button id="previous">Précédent</button>
-          <button id="today">Aujourd'hui</button>
-          <button id="next">Suivant</button>
+          <div>
+            <button id="previous">Previous</button>
+            <button id="today">Today</button>
+            <button id="next">Next</button>
+          </div>
         </article>
-        <table>
-          <thead>
-            <th>Lun</th>
-            <th>Mar</th>
-            <th>Mer</th>
-            <th>Jeu</th>
-            <th>Ven</th>
-            <th>Sam</th>
-            <th>Dim</th>
-          </thead>
-          <tbody id="dayMonth"></tbody>
-        </table>
+        <article class="calendar__app__weekday" id="weekday"></article>
+        <article class="calendar__app__dayMonth" id="dayMonth"></article>
       </section>
     </main>
     <script>
