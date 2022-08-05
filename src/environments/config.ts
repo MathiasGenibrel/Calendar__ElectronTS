@@ -19,8 +19,9 @@ class System {
 }
 
 class Config {
-  public readonly production: boolean = process.env.NODE_ENV === "production";
-  public readonly system: ISystem = new System(this.production);
+  public static readonly production: boolean =
+    process.env.NODE_ENV === "production";
+  public static readonly system: ISystem = new System(this.production);
 }
 
-export default new Config();
+export default Config;

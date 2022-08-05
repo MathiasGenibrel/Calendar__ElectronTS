@@ -1,5 +1,5 @@
 import { IDayElementParams } from "../../interface/Elements/IDayElement";
-import Config from "../../environments/local.config";
+import Config from "../../environments/config";
 
 export class DayElement {
   private readonly currentDate: Date = new Date(Date.now());

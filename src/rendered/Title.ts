@@ -1,4 +1,4 @@
-import Config from "../environments/local.config";
+import Config from "../environments/config";
 
 let WEEKDAY_GENERATED: boolean = false;
 
@@ -58,7 +58,6 @@ export class Title {
     currentMonthElement.textContent = this.title;
 
     if (!WEEKDAY_GENERATED) {
-      console.log(Config);
       const currentWeekdayElement = document.querySelector(
         "#weekday"
       ) as HTMLElement;
