@@ -30,10 +30,16 @@ export class DateGenerator {
    */
   protected generateActualMonth(): void {
     for (let index = 1; index <= this.totalDaysCurrentMonth(); index++) {
+      const actualDay = new Date(
+        this.currentDate.getFullYear(),
+        this.currentDate.getMonth(),
+        index
+      );
+
       this.calendarFragment.appendChild(
         new DayElement({
           dayNumeric: index,
-          date: this.currentDate,
+          date: actualDay,
         }).getElement()
       );
     }
@@ -58,12 +64,13 @@ export class DateGenerator {
           this.currentDate.getFullYear(),
           this.currentDate.getMonth(),
           index
-        ).getDate();
+        );
 
         this.calendarFragment.appendChild(
           new DayElement({
-            dayNumeric: currentDay,
-            date: this.currentDate,
+            dayNumeric: currentDay.getDate(),
+            date: currentDay,
+            classList: ["other-month"],
           }).getElement()
         );
       }
@@ -81,19 +88,20 @@ export class DateGenerator {
       0
     ).getDay();
 
-    // Get the next month data
-    const nextMonth: Date = new Date(
-      this.currentDate.getFullYear(),
-      this.currentDate.getMonth() + 1,
-      1
-    );
-
     if (lastWeekdayOfMonth) {
       for (let index = 1; index <= 7 - lastWeekdayOfMonth; index++) {
+        // Get the next month data
+        const nextMonth: Date = new Date(
+          this.currentDate.getFullYear(),
+          this.currentDate.getMonth() + 1,
+          index
+        );
+
         this.calendarFragment.appendChild(
           new DayElement({
             dayNumeric: index,
             date: nextMonth,
+            classList: ["other-month"],
           }).getElement()
         );
       }

@@ -36,10 +36,16 @@ export class DayElement {
   }
 
   public getElement() {
-    this.params.classList?.push("calendar__app__dayMonth__day");
+    this.dayContainer.classList.add("calendar__app__dayMonth__day");
 
-    if (this.params.date === this.currentDate)
-      this.params.classList?.push("calendar__app__dayMonth__day--today");
+    this.currentDate.setHours(0, 0, 0, 0);
+    this.params.date.setHours(0, 0, 0, 0);
+
+    if (this.params.date.getTime() === this.currentDate.getTime())
+      this.dayContainer.classList.add("calendar__app__dayMonth__day--today");
+
+    if (this.params.classList)
+      this.dayContainer.classList.add(...this.params.classList);
 
     this.setContainerParam();
     this.setDayContent();

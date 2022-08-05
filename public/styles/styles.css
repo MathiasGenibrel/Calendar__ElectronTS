@@ -75,3 +75,7 @@
   background-color: red;
   color: #fff;
 }
+
+.other-month * {
+  opacity: 0.5;
+}
