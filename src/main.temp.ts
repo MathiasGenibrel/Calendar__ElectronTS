@@ -18,7 +18,7 @@ class App {
       minHeight: Config.window.minHeight,
       parent: param?.parent,
       modal: param?.modal,
-      show: param?.show ?? true,
+      show: param?.show,
       webPreferences: {
         preload: preload ? path.join(__dirname, preload) : undefined,
         nodeIntegration: true,
@@ -49,13 +49,7 @@ app.on("window-all-closed", () => {
   }
 });
 
-ipcMain.handle(
-  "createEvent",
-  (event, arg: { date_deb: Date; callback: Function }) => {
-    console.log(arg);
-    App.createWindow("createEvent.html", undefined, {
-      modal: true,
-      parent: BrowserWindow.getFocusedWindow() ?? undefined,
-    });
-  }
-);
+// ipcMain.handle("createEvent", (event, arg) => {
+//   console.log(arg);
+//   console.log(event);
+// });

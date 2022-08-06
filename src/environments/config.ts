@@ -23,12 +23,20 @@ class Config {
   public static readonly production: boolean =
     process.env.NODE_ENV === "production";
   public static readonly system: ISystem = new System(this.production);
+
   public static readonly db: ConnectionOptions = {
     host: process.env.DB_HOST ?? "localhost",
     user: process.env.DB_USER ?? "root",
     password: process.env.DB_PASSWORD ?? "password",
     database: process.env.DB_NAME ?? "calendar--app",
     port: process.env.DB_PORT ? parseInt(process.env.DB_PORT) : 3306,
+  };
+
+  public static readonly window = {
+    width: 1280,
+    minWidth: 800,
+    height: 720,
+    minHeight: 600,
   };
 }
 

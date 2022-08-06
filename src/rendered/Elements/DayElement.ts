@@ -1,6 +1,9 @@
+import { ipcRenderer } from "electron";
 import { IDayElementParams } from "../../interface/Elements/IDayElement";
 import Config from "../../environments/config";
 import { EventHandler } from "../Events/EventsHandler";
+
+// Import interface
 import { IEvents } from "../../interface/Events/IEvents";
 
 export class DayElement {
@@ -43,7 +46,7 @@ export class DayElement {
     // Open new window with the creation content of an event
     this.dayContainer.addEventListener("click", () => {
       // TODO: Add event listener to create new event
-      console.log(this.eventHandler.getEvent());
+      ipcRenderer.invoke("createEvent", this.params.date);
     });
   }
 
