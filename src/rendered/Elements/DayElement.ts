@@ -1,13 +1,17 @@
 import { IDayElementParams } from "../../interface/Elements/IDayElement";
 import Config from "../../environments/config";
+import { EventHandler } from "../Events/EventsHandler";
+import { IEvents } from "../../interface/Events/IEvents";
 
 export class DayElement {
   private readonly currentDate: Date = new Date(Date.now());
   private params: IDayElementParams;
   private dayContainer: HTMLElement = document.createElement("div");
+  private eventHandler: EventHandler;
 
   constructor(params: IDayElementParams) {
     this.params = params;
+    this.eventHandler = new EventHandler(params.date);
   }
 
   private setContainerParam() {
@@ -35,6 +39,39 @@ export class DayElement {
     this.dayContainer.appendChild(dayTitle);
   }
 
+  private setEventListener() {
+    // Open new window with the creation content of an event
+    this.dayContainer.addEventListener("click", () => {
+      // TODO: Add event listener to create new event
+      console.log(this.eventHandler.getEvent());
+    });
+  }
+
+  private setEventDisplay() {
+    this.eventHandler.getEvent().then((events: IEvents[] | void) => {
+      if (events && events.length > 0) {
+        // create event container (contains all event for this.params.date)
+        const eventDisplay = document.createElement("div");
+        eventDisplay.classList.add("calendar__app__dayMonth__day__eventList");
+
+        events.forEach((event: IEvents) => {
+          const eventElement = document.createElement("div");
+          eventElement.classList.add("event");
+          eventElement.textContent = event.titre;
+          eventElement.addEventListener("click", () => {
+            console.log(event);
+          });
+
+          // Insert event in event container
+          eventDisplay.appendChild(eventElement);
+        });
+
+        // display event container
+        this.dayContainer.appendChild(eventDisplay);
+      }
+    });
+  }
+
   public getElement() {
     this.dayContainer.classList.add("calendar__app__dayMonth__day");
 
@@ -49,6 +86,8 @@ export class DayElement {
 
     this.setContainerParam();
     this.setDayContent();
+    this.setEventListener();
+    this.setEventDisplay();
 
     return this.dayContainer;
   }
