@@ -4,23 +4,38 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/reset.css" />
+    <link rel="stylesheet" href="styles/createEvent.css" />
     <title>Add Event</title>
   </head>
   <body>
-    <form>
+    <form id="formEvent">
       <label for="date_deb">
         Date de début:
-        <input type="date" name="date_deb" id="date_deb" />
+        <input type="date" name="date_deb" id="date_deb" required />
+      </label>
+
+      <label for="heure_deb">
+        Heure de début:
+        <input type="time" name="heure_deb" id="heure_deb" required />
+      </label>
+      <label for="heure_fin">
+        Heure de fin:
+        <input type="time" name="heure_fin" id="heure_fin" required />
       </label>
 
       <label for="date_fin">
-        Date de début:
-        <input type="date" name="date_fin" id="date_fin" />
+        Date de fin:
+        <input type="date" name="date_fin" min="2020" id="date_fin" required />
       </label>
 
       <label for="titre">
         Titre:
-        <input type="text" name="titre" id="titre" />
+        <input type="text" name="titre" id="titre" required />
       </label>
 
       <label for="description">
@@ -42,6 +57,11 @@
         Statut:
         <input type="text" name="statut" id="statut" />
       </label>
+      <button id="closeModal" type="button">Cancel</button>
+      <button id="saveEvent">Save</button>
+      <script>
+        require("../dist/rendered/modals/CreateEvent/createEvent.js");
+      </script>
     </form>
   </body>
 </html>

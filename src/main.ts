@@ -12,10 +12,12 @@ class App {
     param?: IWindowParam
   ): BrowserWindow {
     const window = new BrowserWindow({
-      width: Config.window.width,
-      minWidth: Config.window.minWidth,
-      height: Config.window.height,
-      minHeight: Config.window.minHeight,
+      minWidth: param?.minWidth ?? Config.window.minWidth,
+      width: param?.width ?? Config.window.width,
+      maxWidth: param?.maxWidth ?? undefined,
+      minHeight: param?.minHeight ?? Config.window.minHeight,
+      height: param?.height ?? Config.window.height,
+      maxHeight: param?.maxHeight ?? undefined,
       parent: param?.parent,
       modal: param?.modal,
       show: param?.show ?? true,
@@ -23,6 +25,9 @@ class App {
         preload: preload ? path.join(__dirname, preload) : undefined,
         nodeIntegration: true,
         contextIsolation: false,
+        additionalArguments: param?.additionalArguments
+          ? [...param?.additionalArguments]
+          : undefined,
       },
     });
 
@@ -49,13 +54,17 @@ app.on("window-all-closed", () => {
   }
 });
 
-ipcMain.handle(
-  "createEvent",
-  (event, arg: { date_deb: Date; callback: Function }) => {
-    console.log(arg);
-    App.createWindow("createEvent.html", undefined, {
-      modal: true,
-      parent: BrowserWindow.getFocusedWindow() ?? undefined,
-    });
-  }
-);
+ipcMain.handle("createEvent", (event, arg: Date) => {
+  App.createWindow("createEvent.html", undefined, {
+    modal: true,
+    parent: BrowserWindow.getFocusedWindow() ?? undefined,
+    width: 400,
+    height: 600,
+    additionalArguments: [`--currentDateEvent=${arg.toISOString()}`],
+  });
+});
+
+ipcMain.handle("closeModal", (event, arg) => {
+  BrowserWindow.getFocusedWindow()?.close();
+  // event.sender.send("createEvent", { whereAmI: "CEST ICI" });
+});
