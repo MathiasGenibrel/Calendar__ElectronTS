@@ -6,6 +6,7 @@ import {
   IHtmlInputValue,
   IHtmlInputRequired,
 } from "../../../interface/CreateEvent/IHtmlInput";
+import { EventHandler } from "../../Events/EventsHandler";
 
 const inputsID = [
   "date_deb",
@@ -70,6 +71,18 @@ export class FormEventConstructor {
       }
     }
 
+    formInputValue.date_deb = new Date(
+      formInputValue.date_deb + " " + formInputValue.heure_deb
+    );
+
+    formInputValue.date_fin = new Date(
+      formInputValue.date_fin + " " + formInputValue.heure_fin
+    );
+
+    // Remove unnecessary properties
+    delete formInputValue.heure_deb;
+    delete formInputValue.heure_fin;
+
     return formInputValue as IHtmlInputValue;
   }
 
@@ -85,7 +98,7 @@ export class FormEventConstructor {
           throw new Error(`${id} is required`);
       });
 
-      console.log(this.getFormInputValue());
+      new EventHandler().createEvent(this.getFormInputValue());
     });
   }
 }
