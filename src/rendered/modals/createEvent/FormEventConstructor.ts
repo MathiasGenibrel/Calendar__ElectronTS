@@ -1,4 +1,5 @@
 import { argv } from "process";
+import { ipcRenderer } from "electron";
 
 // Import interface
 import {
@@ -99,6 +100,7 @@ export class FormEventConstructor {
       });
 
       new EventHandler().createEvent(this.getFormInputValue());
+      ipcRenderer.invoke("closeModal");
     });
   }
 }
