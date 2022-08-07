@@ -61,6 +61,13 @@
   justify-content: flex-end;
 }
 
+.calendar__app__dayMonth__day {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
 .calendar__app__dayMonth__day > h2,
 .calendar__app__dayMonth__day--today > h2 {
   padding: 0.5rem 0.75rem;
@@ -78,4 +85,19 @@
 
 .other-month * {
   opacity: 0.5;
+}
+
+.calendar__app__dayMonth__day__eventList {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.calendar__app__dayMonth__day__eventList > div {
+  cursor: pointer;
+  background-color: aqua;
+  width: 100%;
+  padding: 0.4rem 0.6rem;
+  margin-bottom: 0.3rem;
 }
