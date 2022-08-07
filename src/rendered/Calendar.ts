@@ -36,13 +36,13 @@ class Calendar extends DateGenerator {
   render(): void {
     new Title(this.currentDate).render();
 
-    // Reset the day container (day elements displayed)
-    this.dayContainer.innerHTML = "";
-
     // Generate all days to display
     this.generatePreviousMonth();
     this.generateActualMonth();
     this.generateNextMonth();
+
+    // Reset the day container (day elements displayed)
+    this.dayContainer.innerHTML = "";
 
     // Render the calendar
     this.dayContainer.appendChild(this.calendarFragment);

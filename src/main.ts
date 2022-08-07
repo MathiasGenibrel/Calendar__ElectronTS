@@ -59,12 +59,15 @@ ipcMain.handle("createEvent", (event, arg: Date) => {
     modal: true,
     parent: BrowserWindow.getFocusedWindow() ?? undefined,
     width: 400,
-    height: 600,
+    height: 650,
     additionalArguments: [`--currentDateEvent=${arg.toISOString()}`],
   });
 });
 
 ipcMain.handle("closeModal", (event, arg) => {
-  BrowserWindow.getFocusedWindow()?.close();
+  const actualWindow = BrowserWindow.getFocusedWindow();
+
+  actualWindow?.getParentWindow()?.reload();
+  actualWindow?.close();
   // event.sender.send("createEvent", { whereAmI: "CEST ICI" });
 });
