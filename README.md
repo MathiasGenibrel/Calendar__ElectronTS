@@ -12,6 +12,11 @@ $ npm start
 This app is based languages on your system configuration.
 This app is build with ElectronJS, NodeJS, MySQL2 && TS
 
+### How the app works ?
+
+- To create an event, you will have to click on a day of the calendar
+- To see the detailed view of an event, you will have to click on it, when clicked, this will trigger the opening of a modal, which will allow you to update or delete the event
+
 ## DB Specification
 
 ### Structure
