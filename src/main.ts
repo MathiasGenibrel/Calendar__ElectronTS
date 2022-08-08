@@ -4,6 +4,7 @@ import Config from "./environments/config";
 
 // Import interface
 import { IWindowParam } from "./interface/IWindowParam";
+import { IEvents } from "./interface/Events/IEvents";
 
 class App {
   public static createWindow(
@@ -61,6 +62,16 @@ ipcMain.handle("createEvent", (event, arg: Date) => {
     width: 400,
     height: 650,
     additionalArguments: [`--currentDateEvent=${arg.toISOString()}`],
+  });
+});
+
+ipcMain.handle("viewEvent", (event, arg: IEvents) => {
+  App.createWindow("viewEvent.html", undefined, {
+    modal: true,
+    parent: BrowserWindow.getFocusedWindow() ?? undefined,
+    width: 400,
+    height: 650,
+    additionalArguments: [`--eventData=${JSON.stringify(arg)}`],
   });
 });
 
