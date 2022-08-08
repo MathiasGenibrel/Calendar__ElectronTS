@@ -61,8 +61,11 @@ export class DayElement {
           const eventElement = document.createElement("div");
           eventElement.classList.add("event");
           eventElement.textContent = event.titre;
-          eventElement.addEventListener("click", () => {
-            console.log(event);
+          eventElement.addEventListener("click", (e) => {
+            e.stopPropagation();
+            // TODO Display detailed view of the event
+
+            ipcRenderer.invoke("viewEvent", event);
           });
 
           // Insert event in event container

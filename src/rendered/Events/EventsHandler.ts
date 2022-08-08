@@ -36,9 +36,12 @@ export class EventHandler {
     }
   }
 
-  public async updateEvent(eventParameters: IEvents): Promise<void> {
+  public async updateEvent(
+    id: number,
+    eventParameters: IEvents
+  ): Promise<void> {
     try {
-      if (!eventParameters.id) {
+      if (!id) {
         throw new Error("id is required");
         // TODO
         // new SnackBar({
@@ -46,6 +49,7 @@ export class EventHandler {
         //   type: "error",
         // })
       }
+      eventParameters.id = id;
       await DataBase.updateEvent(eventParameters);
       console.info("update event");
     } catch (error) {

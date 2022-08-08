@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Event</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles/reset.css" />
+    <link rel="stylesheet" href="styles/createEvent.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>View Event</h1>
+      </div>
+      <div class="content">
+        <div class="form">
+          <form id="formEvent" name="updateEvent">
+            <label for="date_deb">
+              Date de début:
+              <input type="date" name="date_deb" id="date_deb" required />
+            </label>
+            <label for="heure_deb">
+              Heure de début:
+              <input type="time" name="heure_deb" id="heure_deb" required />
+            </label>
+            <label for="heure_fin">
+              Heure de fin:
+              <input type="time" name="heure_fin" id="heure_fin" required />
+            </label>
+            <label for="date_fin">
+              Date de fin:
+              <input type="date" name="date_fin" id="date_fin" required />
+            </label>
+            <label for="titre">
+              Titre:
+              <input type="text" name="titre" id="titre" required />
+            </label>
+            <label for="description">
+              Description:
+              <input type="text" name="description" id="description" />
+            </label>
+            <label for="location">
+              Location:
+              <input type="text" name="location" id="location" />
+            </label>
+            <label for="categorie">
+              Catégorie:
+              <input type="text" name="categorie" id="categorie" />
+            </label>
+            <label for="statut">
+              Statut:
+              <input type="text" name="statut" id="statut" />
+            </label>
+            <button id="deleteEvent" type="button">Delete</button>
+            <button id="closeModal" type="button">Cancel</button>
+            <button id="updateEvent" type="submit">Update</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script>
+      require("../dist/rendered/modals/detailledView/detailledView.js");
+    </script>
+  </body>
+</html>

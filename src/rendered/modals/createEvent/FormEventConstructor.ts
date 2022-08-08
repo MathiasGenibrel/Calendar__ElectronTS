@@ -6,8 +6,10 @@ import {
   IHtmlInput,
   IHtmlInputValue,
   IHtmlInputRequired,
+  IHtmlInputValueFromParent,
 } from "../../../interface/CreateEvent/IHtmlInput";
 import { EventHandler } from "../../Events/EventsHandler";
+import { getDay } from "../../../functions/getDateISO";
 
 const inputsID = [
   "date_deb",
@@ -33,8 +35,13 @@ const requiredFields = [
 export class FormEventConstructor {
   protected readonly formInputElement: IHtmlInput;
   private readonly formElement: HTMLFormElement;
+  private readonly idEvent?: number;
 
-  constructor() {
+  constructor(formValue?: IHtmlInputValueFromParent) {
+    if (formValue) {
+      this.setDefaultValue(formValue);
+      this.idEvent = formValue.id;
+    }
     this.formInputElement = this.getAllHtmlInputs();
     this.formElement = document.querySelector("#formEvent") as HTMLFormElement;
     this.setSubmitHandler();
@@ -84,13 +91,14 @@ export class FormEventConstructor {
     delete formInputValue.heure_deb;
     delete formInputValue.heure_fin;
 
-    return formInputValue as IHtmlInputValue;
+    return formInputValue;
   }
 
   private setSubmitHandler(): void {
     console.log(this.formElement);
     this.formElement.addEventListener("submit", (event: SubmitEvent) => {
       event.preventDefault();
+      const target = event.target as HTMLFormElement;
 
       requiredFields.forEach((id) => {
         if (
@@ -99,8 +107,40 @@ export class FormEventConstructor {
           throw new Error(`${id} is required`);
       });
 
-      new EventHandler().createEvent(this.getFormInputValue());
+      if (target.name === "createEvent")
+        new EventHandler().createEvent(this.getFormInputValue());
+
+      if (target.name === "updateEvent")
+        new EventHandler().updateEvent(
+          this.idEvent as number,
+          this.getFormInputValue()
+        );
+
       ipcRenderer.invoke("closeModal");
     });
+  }
+
+  private setDefaultValue(formValue: IHtmlInputValueFromParent): void {
+    const startHour = formValue?.date_deb.split("T")[1].slice(0, 5);
+    const endHour = formValue?.date_fin.split("T")[1].slice(0, 5);
+
+    const inputListOfElement = this.getAllHtmlInputs();
+
+    for (const element in inputListOfElement) {
+      const inputElement = inputListOfElement[element as keyof IHtmlInput];
+      const defaultValue = formValue?.[element as keyof IHtmlInputValue];
+
+      if (inputElement) {
+        if (element === "heure_deb" && startHour) {
+          inputElement.value = startHour;
+        } else if (element === "heure_fin" && endHour) {
+          inputElement.value = endHour;
+        } else if (element === "date_deb" || element === "date_fin") {
+          inputElement.value = getDay(new Date(defaultValue as string));
+        } else {
+          inputElement.value = defaultValue as string;
+        }
+      }
+    }
   }
 }

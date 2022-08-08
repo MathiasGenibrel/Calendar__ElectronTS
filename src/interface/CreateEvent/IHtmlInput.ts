@@ -22,6 +22,18 @@ export interface IHtmlInputValue {
   statut?: string;
 }
 
+export interface IHtmlInputValueFromParent {
+  id: number;
+  date_deb: string;
+  date_fin: string;
+  titre: string;
+  description?: string;
+  location?: string;
+  categorie?: string;
+  transparency?: string;
+  statut?: string;
+}
+
 export interface IHtmlInputRequired {
   date_deb: HTMLInputElement;
   heure_deb: HTMLInputElement;

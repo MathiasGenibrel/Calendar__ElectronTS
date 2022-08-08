@@ -1,4 +1,6 @@
 import { getDay } from "../../../functions/getDateISO";
+import { IHtmlInputValueFromParent } from "../../../interface/CreateEvent/IHtmlInput";
+import { EventHandler } from "../../Events/EventsHandler";
 
 // Import Class
 import { FormEventConstructor } from "./FormEventConstructor";
@@ -6,8 +8,8 @@ import { FormEventConstructor } from "./FormEventConstructor";
 export class FormEvent extends FormEventConstructor {
   private readonly currentDate: Date;
 
-  constructor() {
-    super();
+  constructor(formValue?: IHtmlInputValueFromParent) {
+    super(formValue);
 
     this.currentDate = new Date(this.getStringDateParent());
     this.setInitialValues();
@@ -38,5 +40,9 @@ export class FormEvent extends FormEventConstructor {
       return;
     }
     throw new Error("date_deb || date_fin is not defined");
+  }
+
+  public static deleteEvent(id: number): void {
+    new EventHandler().deleteEvent(id);
   }
 }
