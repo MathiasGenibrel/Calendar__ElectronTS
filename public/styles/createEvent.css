@@ -26,18 +26,3 @@ form > label > input {
   margin-top: 0.2rem;
   font-family: "Comfortaa", cursive;
 }
-
-#saveEvent,
-#closeModal {
-  background-color: transparent;
-  padding: 0.25rem 1rem;
-  border: solid #eee 1px;
-  border-radius: 0.5rem;
-  box-shadow: 0.3px 0.3px 1px 0.3px #ccc;
-  cursor: pointer;
-}
-
-#saveEvent:active,
-#closeModal:active {
-  background-color: #eee;
-}
